@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5500;
 
 // import routes
 const routes = require("./routes/PostRoute");
-
+mongoose.set("strictQuery", false);
 // connect to mongodb
 mongoose
     .connect(process.env.DB_CONNECT)
