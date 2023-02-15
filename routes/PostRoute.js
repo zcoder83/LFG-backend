@@ -38,7 +38,24 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-// update post
+// update post without password
+router.put("/update/:id", async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        (post.gameName = req.body.gameName),
+            (post.title = req.body.title),
+            (post.content = req.body.content),
+            (post.language = req.body.language),
+            (post.discord = req.body.discord),
+            (post.password = req.body.password),
+            await post.save();
+        res.status(200).send("Post successfully updated");
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+// update post with password
 router.put("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
